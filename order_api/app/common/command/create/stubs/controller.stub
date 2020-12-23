@@ -1,0 +1,89 @@
+<?php
+/**
+ * FileName: Controller.php
+ * ==============================================
+ * Copy right 2016-2018
+ * ----------------------------------------------
+ * This is not a free software, without any authorization is not allowed to use and spread.
+ * ==============================================
+ * @author: kong | <iwhero@yeah.com>
+ * @date  : {%time%}
+ */
+declare (strict_types = 1);
+
+namespace {%namespace%};
+
+use app\common\controller\BaseController;
+
+use app\common\logic\{%className%} as {%className%}Logic;
+use app\common\validate\{%className%} as {%className%}Validate;
+
+class {%className%} extends BaseController
+{
+    private ${%lowercaseClassName%}Logic;
+
+    public function __construct({%className%}Logic ${%lowercaseClassName%}Logic)
+    {
+        parent::__construct();
+        $this->{%lowercaseClassName%}Logic = ${%lowercaseClassName%}Logic;
+    }
+
+    public function lists()
+    {
+        $page = $this->request->get('page/d', 1);
+        $size = $this->request->get('size/d', 20);
+        $where = $this->_getQueryWhere();
+        $result = $this->{%lowercaseClassName%}Logic->lists($where, $page, $size);
+        return $this->response($result);
+    }
+
+    public function info()
+    {
+        $id = $this->request->get('id/d');
+        if ( ! $id) {
+            $this->error('请选择需要操作的数据');
+        }
+        $result = $this->{%lowercaseClassName%}Logic->info($id);
+        return $this->response($result);
+    }
+
+    public function add()
+    {
+        return $this->operate('add', 'add_{%lowercaseClassName%}');
+    }
+
+    public function edit()
+    {
+        return $this->operate('edit', 'edit_{%lowercaseClassName%}', 'edit');
+    }
+
+    public function status()
+    {
+        return $this->statusAction(\app\common\model\{%className%}::class, 'status_{%lowercaseClassName%}');
+    }
+
+    public function delete()
+    {
+        $id = $this->request->post('id/d');
+        if ( ! $id) {
+            $this->error('请选择需要操作的数据');
+        }
+        $result = $this->{%lowercaseClassName%}Logic->delete($id);
+        return $this->returnSuccessOrError($result, 'delete_{%lowercaseClassName%}');
+    }
+
+    private function operate($method, $action, $scene = '')
+    {
+        $data = $this->requestPostData();
+        $this->validate($data, {%className%}Validate::class , $scene);
+        $result = $this->{%lowercaseClassName%}Logic->$method($data);
+        return $this->returnSuccessOrError($result, $action);
+    }
+
+    private function _getQueryWhere()
+    {
+        $where = [];
+
+        return $where;
+    }
+}
