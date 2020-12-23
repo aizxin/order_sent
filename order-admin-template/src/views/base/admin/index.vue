@@ -3,6 +3,7 @@
     <div class="filter-container">
       <el-button
         v-waves
+        v-permission="'add_admin'"
         class="filter-item"
         style="margin-left: 10px;"
         type="primary"
@@ -38,7 +39,7 @@
             v-waves
             size="mini"
             @click="handleStatus($route.name,scope.row)"
-          >{{ scope.row.status ? '禁用':'启用' }}
+          >{{ scope.row.status ? '禁用' : '启用' }}
           </el-button>
           <el-button
             v-waves
@@ -77,7 +78,6 @@ export default {
   mixins: [listsMixin],
   methods: {
     async handleMainLists(query) {
-      console.log(this.$route)
       const lists = await this.getDataLists(this.$route.name, Object.assign({}, query, {
         size: this.size,
         page: this.currentPage

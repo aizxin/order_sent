@@ -31,8 +31,8 @@
       <el-form-item label="电话" prop="mobile">
         <el-input v-model="editData.mobile" placeholder="电话" />
       </el-form-item>
-      <el-form-item label="图集" prop="name">
-        <mutiple-image v-model="editData.avatar" isurl />
+      <el-form-item label="头像" prop="avatar">
+        <single-image-upload v-model="editData.avatar" />
       </el-form-item>
 
       <el-form-item label="状态" prop="status">
@@ -55,12 +55,12 @@
 <script>
 import editMixin from '@/mixins/editMixin'
 
-import MutipleImage from '@/components/Upload/MultipleImage'
+import SingleImageUpload from '@/components/Upload/SingleImage'
 
 export default {
   name: 'AdminEdit',
   components: {
-    MutipleImage
+    SingleImageUpload
   },
   mixins: [editMixin],
   methods: {

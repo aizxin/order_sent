@@ -30,7 +30,7 @@
 
 <script>
 const BASE_API = process.env.VUE_APP_BASE_API
-import Compress from '../../utils/compress'
+import Compress from '@/utils/compress'
 
 export default {
   name: 'SingleImageUpload',
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       accept: 'image/png,image/jpg,image/jpeg,image/pjpeg,image/gif,image/webp',
-      uploadUrl: BASE_API + 'upload/img',
+      uploadUrl: BASE_API + '/upload/img',
       tempUrl: '',
       imgQuality: 0.5
     }
@@ -114,7 +114,6 @@ export default {
     position: relative;
     border: 1px dashed #d9d9d9;
     float: left;
-    margin-left: 50px;
 
     .image-preview-wrapper {
       position: relative;
