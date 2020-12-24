@@ -24,6 +24,7 @@
     >
       <el-table-column prop="index" type="index" label="ID" width="100" align="center" />
       <el-table-column prop="title" label="接口名称" align="center" />
+      <el-table-column prop="sort" label="排序" align="center" />
       <el-table-column prop="scope" label="状态" align="center">
         <template slot-scope="scope">
           <el-tag v-waves type="primary" size="mini">{{ scope.row.status_text }}</el-tag>
@@ -36,7 +37,7 @@
             v-waves
             size="mini"
             @click="handleStatus($route.name,scope.row)"
-          >{{ scope.row.status ? '禁用':'启用' }}
+          >{{ scope.row.status ? '禁用' : '启用' }}
           </el-button>
           <el-button
             v-waves

@@ -6,7 +6,7 @@
  * ----------------------------------------------
  * This is not a free software, without any authorization is not allowed to use and spread.
  * ==============================================
- *@author: kong | <iwhero@yeah.com>
+ * @author: kong | <iwhero@yeah.com>
  * @date  : 2020-06-17 12:45
  */
 declare (strict_types = 1);
@@ -36,7 +36,7 @@ class Rule extends BaseLogic
         return RuleModel::class;
     }
 
-    public function lists(array $where=[],string $order = 'id asc', $withoutField = false)
+    public function lists(array $where = [], string $order = 'sort asc', $withoutField = false)
     {
         $lists = $this->model->where($where)->withoutField($withoutField)->order($order)->select();
         $rows = $this->ruleTransformer->transformCollection($lists->all());

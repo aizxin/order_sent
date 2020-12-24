@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       accept: 'video/mp4, video/ogg, video/flv, video/avi, video/wmv, video/rmvb, video/mov',
-      uploadUrl: BASE_API + 'upload/file'
+      uploadUrl: BASE_API + '/upload/file'
     }
   },
   computed: {

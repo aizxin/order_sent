@@ -27,9 +27,17 @@
       </el-table-column>
       <el-table-column label="操作" align="center" width="300">
         <template slot-scope="scope">
-          <el-button v-waves size="mini" type="primary" @click="handleAction(scope.row.id)">编辑</el-button>
           <el-button
             v-waves
+            v-permission="'edit_admin'"
+            size="mini"
+            type="primary"
+            @click="handleAction(scope.row.id)"
+          >编辑
+          </el-button>
+          <el-button
+            v-waves
+            v-permission="'role_admin'"
             size="mini"
             type="primary"
             @click="handleAction(scope.row.id,'role')"
@@ -37,12 +45,14 @@
           </el-button>
           <el-button
             v-waves
+            v-permission="'status_admin'"
             size="mini"
             @click="handleStatus($route.name,scope.row)"
           >{{ scope.row.status ? '禁用' : '启用' }}
           </el-button>
           <el-button
             v-waves
+            v-permission="'delete_admin'"
             size="mini"
             type="danger"
             @click="handleDelete($route.name, scope.row.id)"

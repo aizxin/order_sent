@@ -81,6 +81,7 @@ class Admin extends BaseLogic
         $actionIds = [];
         if ($user['is_sup']) {
             $where = ['status' => 1, 'type' => 1];
+            $where_action = ['status' => 1, 'type' => 2];
         } else {
             $rules = Enforcer::getRolesForUser($id);
             $roleIds = [];
@@ -103,16 +104,21 @@ class Admin extends BaseLogic
                 ['is_dir', '=', 2],
             ])->column('rule_id');
             $actionIds = array_unique($actionIds);
+
+            $where_action = ['status' => 1, 'type' => 2, 'id' => $actionIds];
         }
 
         $rule_items = $ruleModel->where($where)
             ->with(['rule' => function (Relation $query) {
-                return $query->where(['status' => 1, 'type' => 2]);
-            }])
-            ->select()->toArray();
+                return $query->where(['status' => 1, 'type' => 2])->order('sort asc');
+            }])->order('sort asc')->select()->toArray();
         if ( ! $rule_items) return [];
 
-        return $this->adminTransformer->ruleTransform($rule_items, $actionIds);
+        $return['rule_action'] = $ruleModel->where($where_action)->column('action');
+
+        $return['rule_menu'] = $this->adminTransformer->ruleTransform($rule_items, $actionIds);
+
+        return $return;
     }
 
     public function ruleAction($user = [])
