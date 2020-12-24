@@ -28,10 +28,12 @@
         "topthink/think-migration": "^3.0",
         "lcobucci/jwt": "^3.3",
         "overtrue/wechat": "^4.2",
-        "nesbot/carbon": "^2.35",
+        "nesbot/carbon": "^2.43",
         "casbin/think-authz": "^1.0",
         "filp/whoops": "^2.7",
-        "topthink/think-swoole": "^3.0"
+        "topthink/think-swoole": "^3.0",
+        "overtrue/pinyin": "^4.0",
+        "intervention/image": "^2.5"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",
@@ -53,5 +55,11 @@
             "@php think service:discover",
             "@php think vendor:publish"
         ]
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
 }

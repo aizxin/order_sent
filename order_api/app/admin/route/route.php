@@ -73,6 +73,16 @@ Route::group(function () {
         Route::post('delete', 'delete')->name('log');
     })->prefix('ActionLog/');
 
+    // 文章
+    Route::group('/article', function () {
+        Route::get('lists', 'lists')->name('article');
+        Route::get('info', 'info')->name('article');
+        Route::post('add', 'add')->name('article');
+        Route::post('edit', 'edit')->name('article');
+        Route::post('delete', 'delete')->name('article');
+        Route::post('status', 'status')->name('article');
+    })->prefix('Article/');
+
     // 医院分类管理
     Route::group('/cate', function () {
         Route::get('lists', 'lists')->name('cate');

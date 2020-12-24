@@ -24,13 +24,17 @@ export function filterAsyncRoutes(accessedRouters) {
 
 const state = {
   routes: [],
-  addRoutes: []
+  addRoutes: [],
+  ruleAction: []
 }
 
 const mutations = {
   SET_ROUTES: (state, routes) => {
     state.addRoutes = routes
     state.routes = constantRoutes.concat(routes)
+  },
+  SET_Rule_Action: (state, ruleAction) => {
+    state.ruleAction = ruleAction
   }
 }
 
@@ -42,8 +46,10 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-        const routers = filterAsyncRoutes(listToTree(data))
+        const { rule_action, rule_menu } = data
+        const routers = filterAsyncRoutes(listToTree(rule_menu))
         commit('SET_ROUTES', routers)
+        commit('SET_Rule_Action', rule_action)
         resolve(routers)
       }).catch(error => {
         reject(error)
