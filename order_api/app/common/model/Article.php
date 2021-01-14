@@ -13,7 +13,6 @@ class Article extends BaseModel
      * @param $value
      * @param $data
      *
-     * @author: 永 | <chuanshuo_yongyuan@163.com>
      */
     public function setNamePinyinAttr($value, $data)
     {
@@ -29,7 +28,6 @@ class Article extends BaseModel
      * @param $value
      *
      * @return false|int
-     * @author: 永 | <chuanshuo_yongyuan@163.com>
      */
     public function setPublishTimeAttr($value)
     {
@@ -43,7 +41,6 @@ class Article extends BaseModel
      * @param $data
      *
      * @return string
-     * @author: 永 | <chuanshuo_yongyuan@163.com>
      */
     public function getPublishTimeTextAttr($value, $data)
     {
@@ -55,7 +52,6 @@ class Article extends BaseModel
      * @param $data
      *
      * @return mixed
-     * @author: 永 | <chuanshuo_yongyuan@163.com>
      */
     public function getResurlAttr($value, $data)
     {
@@ -71,7 +67,6 @@ class Article extends BaseModel
      * @param $data
      *
      * @return false|string
-     * @author: 永 | <chuanshuo_yongyuan@163.com>
      */
     public function setResurlAttr($value, $data)
     {
@@ -91,7 +86,6 @@ class Article extends BaseModel
      * @param $data
      *
      * @return mixed
-     * @author: 永 | <chuanshuo_yongyuan@163.com>
      */
     public function getArticleTypeTextAttr($value, $data)
     {
@@ -112,7 +106,6 @@ class Article extends BaseModel
      * @param $value
      *
      * @return string
-     * @author: 永 | <chuanshuo_yongyuan@163.com>
      */
     public function setContentAttr($value)
     {
@@ -122,7 +115,6 @@ class Article extends BaseModel
     /**
      * 关联文章分类
      * @return \think\model\relation\BelongsTo
-     * @author: 永 | <chuanshuo_yongyuan@163.com>
      */
     public function category()
     {

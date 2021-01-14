@@ -21,7 +21,7 @@ class BaseModel extends Model
 {
     use SoftDelete;
     protected $deleteTime = 'delete_time';
-    protected $defaultSoftDelete = 0;
+    protected $defaultSoftDelete = null;
     protected $hidden = ['delete_time'];
 
     public function getStatusTextAttr($value, $data)

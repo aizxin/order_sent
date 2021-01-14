@@ -120,33 +120,4 @@ class Admin extends BaseLogic
 
         return $return;
     }
-
-    public function ruleAction($user = [])
-    {
-        $id = $user['id'] ?? '';
-        if ( ! $id) return [];
-
-        $ruleModel = $this->baseModel(RuleModel::class);
-
-        if ($user['is_sup']) {
-            $where = ['status' => 1, 'type' => 2];
-        } else {
-            $rules = Enforcer::getRolesForUser($id);
-            $roleIds = [];
-            foreach ($rules as $rule) {
-                $roleIds[] = explode(':', $rule)[1] ?? '';
-            }
-            $roleIds = array_unique($roleIds);
-            $roleRuleModel = $this->baseModel(RoleRuleModel::class);
-            $actionIds = $roleRuleModel->where([
-                ['role_id', 'in', $roleIds],
-                ['is_dir', '=', 2],
-            ])->column('rule_id');
-            $actionIds = array_unique($actionIds);
-            $where = ['status' => 1, 'type' => 2, 'id' => $actionIds];
-        }
-
-        return $ruleModel->where($where)->column('action');
-
-    }
 }
